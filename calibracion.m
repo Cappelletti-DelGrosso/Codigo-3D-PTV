@@ -13,6 +13,7 @@ N=mirar(camara, direccion)
 leer4(camara, direccion, 1, N, N)
 % pause
 end
+
 pause
 cd('Simulación')
 [N,X]=simular(direccion);
