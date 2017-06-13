@@ -18,3 +18,5 @@ pause
 cd('Simulación')
 [N,X]=simular(direccion);
 cd ..
+
+%Comentario de prueba
