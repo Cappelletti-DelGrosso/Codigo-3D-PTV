@@ -1,7 +1,7 @@
 # Codigo-3D-PTV
 El script principal de calibración es el homónimo. Este solo necesita que se le ingrese la dirección de la carpeta
 donde se hayan las imágenes de calibración dentro de una carpeta que debe llamarse "Damero" junto con su fondo en
-otra carpeta que debe llamarse "Fondo blanco". El mismo detecta los puntos de los dameros (xcornes.m),
+otra carpeta que debe llamarse "Fondo blanco". El mismo detecta los puntos de los dameros (xcorners.m),
 los numera (numerar.m) y los guarda como .csv (todo esto en esquinas10.m) en carpetas llamadas: Puntos1 y Puntos2 
 para las cámaras 1 y 2 respectivamente. 
 
