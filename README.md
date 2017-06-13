@@ -17,8 +17,10 @@ utilizando las imágenes en común de ambas calibraciones triangula sus posicion
 el histograma de errores en las distancias relativas de los puntos cuya std da el error en mm que se comete al
 triangular y el histograma de los errores de ajuste de los planos triangulados.
 
-El código de control sirve para asegurarse de que la calibración todavía funciona. Se toma una o más imágenes del
- damero y se la triangula con los parámetros ya conocidos y se evalúan sus errores.
+El código de control sirve para asegurarse de que la calibración todavía funciona. Esto es que no se alteraron los
+parámetros del montaje. Para ello, se toma una o más imágenes del damero y se la triangula con los parámetros ya
+conocidos y se evalúan sus errores.
  
- El código de flaters sirve para detectar los centros de los floaters en una filmación y recuperar la trayectoria.
+ El código de floaters sirve para detectar los centros de los floaters en una filmación y recuperar la trayectoria.
+ Este usa los códigos de Correspondencia para ver qué flotador en una cámara corresponde a cuál de la otra.
  
