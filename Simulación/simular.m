@@ -1,4 +1,4 @@
-function [X,N]=simular(dirimagenes)
+function [X,N]=simular(direccion)
 Lx = 1024;
 Ly = 1024;
 pasos = 1;
@@ -7,16 +7,16 @@ n=9;
 m=6;
 dircodigos=cd;
 
-% dirimagenes = 'C:\Users\Nicolás\Desktop\Labo 6\Mediciones\07-06-2017';
+% direccion = 'C:\Users\Nicolás\Desktop\Labo 6\Mediciones\07-06-2017';
 % dircodigos  = 'C:\Users\Nicolás\Desktop\Labo 6\Codigo\Simulacion\Simulación- 26-05-17';
 
-[ R, T, A, k, imagenescomun(:,:,1), imagenescomun(:,:,2), M1, M2, sx, sy ] = cargar( dirimagenes, dircodigos );
+cd(direccion)
+load('Parámetros Montaje Completo')
 
-cd(dirimagenes)
 char(M1(1:(end-4)))
 char(M2(1:(end-4)))
-im(:,:,1) = imread([dirimagenes,'\Damero\',char(M1(1:(end-4)))]);
-im(:,:,2) = imread([dirimagenes,'\Damero\',char(M2(1:(end-4)))]);
+im(:,:,1) = imread([direccion,'\Damero\',char(M1(1:(end-4)))]);
+im(:,:,2) = imread([direccion,'\Damero\',char(M2(1:(end-4)))]);
 
 cd(dircodigos)
 
@@ -61,7 +61,5 @@ end
 for ll=1:2
     escena( Vi(:,:,pasos,ll), A(:,:,ll), sx(ll), sy(ll), R(:,:,ll), (-R(:,:,ll)*T(ll,:)')', Lx, Ly, H(:,:,pasos), im(:,:,ll)); %J(:,:,ll) );
 end
-
-pruebaerrores;
 
 end

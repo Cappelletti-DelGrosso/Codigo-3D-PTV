@@ -1,5 +1,21 @@
+function [X, N]=pruebaerrores(direccion)
+
+dircodigos=cd;
+cd(direccion)
+load('Parámetros Montaje Completo')
+imagenescomun(:,:,1)=J1;
+imagenescomun(:,:,2)=J2;
+clear J1 J2
+
+lado=25.4;
+n=9;
+m=6;
+[y, x] = meshgrid(1:m,1:n);
+     H = lado*[x(:)'-round(n/2);y(:)'-round(m/2)]; % X,Y,Z en columna vertical, cada columna es una partícula
+     H = [H; zeros(1,size(H,2))];
+
 for camara = 1:2
-    cd([dirimagenes, '\Puntos', num2str(camara)])
+    cd([direccion, '\Puntos', num2str(camara)])
     
     for ii=1:size(imagenescomun,1)
 %         char(imagenescomun(ii,:,camara))
@@ -50,5 +66,4 @@ disp(['Error en mm de 1 punto:  ',num2str(std(errores2))])
 
 figure
 hist(errorplano, sqrt(length(errorplano)))
-
-
+end

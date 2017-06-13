@@ -5,18 +5,18 @@ direccion='C:\Users\Nicolás\Desktop\07-06-2017\Damero\'; %Ruta donde se encuentr
 codigos=cd;
 for camara=1:2
 esquinas10(camara, direccion)
-% pause
+pause
 
 N=mirar(camara, direccion)
-% pause
+pause
 
 leer4(camara, direccion, 1, N, N)
-% pause
+pause
 end
 
 pause
 cd('Simulación')
-[N,X]=simular(direccion);
+cargar( direccion )
+simular(direccion);
+[X, N]=pruebaerrores(direccion);
 cd ..
-
-%Comentario de prueba

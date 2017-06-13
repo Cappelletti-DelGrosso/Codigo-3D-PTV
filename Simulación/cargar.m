@@ -1,6 +1,8 @@
-function [ R, T, A, k, J1, J2, M1, M2, sx, sy ] = cargar( dirimagenes, dircodigos )
+function [ R, T, A, k, J1, J2, M1, M2, sx, sy ] = cargar( direccion )
 
-cd(dirimagenes)
+dircodigos=cd;
+
+cd(direccion)
 load('Resultados Camara 1.mat')
 A1=A;
 f1=f;
@@ -76,5 +78,7 @@ T(2,:)   = T2(:,mejores(2));
 k(2,:)   = k2;
 sx       = [20E-3; 17E-3];
 sy       = [20E-3; 17E-3];
+
+save('Parámetros Montaje Completo', 'R', 'T', 'A', 'k', 'J1', 'J2', 'M1', 'M2', 'sx', 'sy' )
 cd(dircodigos)
 end
