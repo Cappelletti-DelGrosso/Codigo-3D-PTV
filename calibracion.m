@@ -1,7 +1,7 @@
 close all
 clear all
 
-direccion='C:\Users\Nicolás\Desktop\07-06-2017\Damero\'; %Ruta donde se encuentra la carpeta de imagenes de calibracion
+direccion='C:\Users\garba\Desktop\14-06-17\'; %Ruta donde se encuentra la carpeta de imagenes de calibracion
 codigos=cd;
 for camara=1:2
 esquinas10(camara, direccion)
