@@ -1,20 +1,36 @@
-dirimagenes='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\09-06-17\';
-dircodigos='C:\Users\Nicolás\Desktop\Labo 6\Codigo\Simulacion\Simulación- 26-05-17';
+function []=Control(direccion, dirparametros)
+% clear all
+% close all
+% 
+% direccion='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\21-06-17\Control\';
+% dirparametros= 'C:\Users\Nicolás\Desktop\Labo 6\Mediciones\21-06-17\Damero\Parámetros Montaje Completo';
+dircodigos=cd;
 
 
 for camara = 1:2
-    cd([dirimagenes, '\Puntos', num2str(camara)])
-    puntos = dir([dirimagenes, '\Puntos', num2str(camara),'\*C',num2str(camara),'S0001.tif.csv']);
+    cd([direccion, '\Puntos', num2str(camara)])
+    puntos = dir([direccion, '\Puntos', num2str(camara),'\*C',num2str(camara),'S0001.tif.csv']);
     Npuntos=length(puntos);
 
     for ii=1:Npuntos
         B                 = dlmread(puntos(ii).name,';',1,0); %Cargo las imagenes en comun
         Wi(:,:,ii,camara) = [B'; ones(1,size(B,1))];
     end
-    cd(dircodigos)
 end
+load(dirparametros)
+cd(dircodigos)
+cd ..
+cd('Simulación')
+
+lado=25.4;
+n=9;
+m=6;
+[y, x] = meshgrid(1:m,1:n);
+     H = lado*[x(:)'-round(n/2);y(:)'-round(m/2)]; % X,Y,Z en columna vertical, cada columna es una partícula
+     H = [H; zeros(1,size(H,2))];
 
 errores=[];
+errorplano=[];
 for ii=1:Npuntos
     inter=[];
     
@@ -26,7 +42,10 @@ for ii=1:Npuntos
     
     X=reshape(inter(1,:),9,6)';
     Y=reshape(inter(2,:),9,6)';
+    Z=reshape(inter(3,:),9,6)';
     [f, G] = fit( [inter(1,:)', inter(2,:)'], inter(3,:)', 'poly11' );
+    seta = f(X,Y);
+    errorplano2 = sum(([X(:)'; Y(:)'; Z(:)']-[X(:)'; Y(:)'; seta(:)']).^2);
     errorplano= [errorplano; G.sse];
     sqrt(G.sse)/54
     
@@ -40,4 +59,9 @@ for ii=1:Npuntos
     figure
     hist(errores(:,ii)) %Grafico un histograma de sus errores, este está desplazado por el error del punto 0
 
+end
+figure
+hist(errorplano2)
+cd ..
+cd('Control')
 end
