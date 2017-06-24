@@ -13,5 +13,8 @@ function [candidatos]=encontrarcandidatos(Qi, x2, y2)
             ll=ll+1;
         end 
     end
+    if length(candidatos)==0
+        candidatos=[nan, nan];
+    end
 
 end
