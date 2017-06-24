@@ -1,22 +1,39 @@
-close all
-clear all
-
-direccion='C:\Users\Nicolás\Desktop\07-06-2017\Damero\'; %Ruta donde se encuentra la carpeta de imagenes de calibracion
-codigos=cd;
+function []=calibracion(direccion, e, m, l, s, p)
+% close all
+% clear all
+% 
+% direccion='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\21-06-17\'; %Ruta donde se encuentra la carpeta de imagenes de calibracion
+% codigos=cd;
 for camara=1:2
-esquinas10(camara, direccion)
-pause
+    
+    if e==1
+%         pause
+        esquinas10(camara, direccion)
+    end
+    
+    if m==1
+%         pause
+        N=mirar(camara, direccion)
+    end
 
-N=mirar(camara, direccion)
-pause
-
-leer4(camara, direccion, 1, N, N)
-pause
+    if l==1
+%         pause
+        leer4(camara, direccion, 1, N, N)
+    end
 end
 
-pause
-cd('Simulación')
-cargar( direccion )
-simular(direccion);
-[X, N]=pruebaerrores(direccion);
-cd ..
+if s==1
+%     pause
+    cd('Simulación')
+    cargar( direccion )
+    simular(direccion);
+    cd ..
+end
+
+if p==1 
+%     pause
+    cd('Simulación')
+    [X, N]=pruebaerrores(direccion);
+    cd ..
+end
+end
