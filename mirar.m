@@ -25,6 +25,9 @@ for ii=1:N
 
     hold on
     plot(B(:,1), B(:,2), 'r', 'LineWidth',2)
+%     for ii=1:(9*6)
+%     text(B(ii,1),B(ii, 2),num2str(ii),'Color','blue','FontSize',14);
+%     end
     pause(3)
     close all
 end
