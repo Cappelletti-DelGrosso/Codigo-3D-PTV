@@ -1,8 +1,9 @@
-clear all
-close all
-
-camara = 1;
-direccion='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\07-06-2017\';
+function [f, U0, V0]=dea10(direccion, camara)
+% clear all
+% close all
+% 
+% camara = 1;
+% direccion='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\19-06-17\Damero\';
 puntos = dir([direccion,'Puntos',num2str(camara),'\*C',num2str(camara),'S0001.tif.csv']);
 n=9;
 m=6;
@@ -25,10 +26,10 @@ for jj=1:10
           H = lado*[x(:)'-round(n/2);y(:)'-round(m/2)];
 
     visualizar( H, Vi )      
-    pause      
-
-    [ A3, R3, T3, k, R4, T4, F ] = zhan5( H, Vi );
-
+%     pause      
+    cd('Zhang')
+    [ A3, R3, T3, k, R4, T4, F ] = zhan6( H, Vi );
+    cd ..
     focal = [A3(1,1), A3(2,2)]*pix(camara)
 
     f(jj,1)=focal(1);
@@ -37,4 +38,5 @@ for jj=1:10
     V0(jj)=A3(2,3);
        
     
+end
 end
