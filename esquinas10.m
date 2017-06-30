@@ -48,7 +48,7 @@ for ii=1:Narch%Narch2%Narch1+1:Narch1+2
 %     imagesc(im)
 %     colorbar
 %     daspect([1,1,1])
-%     
+    
     [centros2, maj]=xcorners(im, s, Lx, Ly, dx ,dy, 0, 0);   %Encontrar los xcorners
     
 %     hold on

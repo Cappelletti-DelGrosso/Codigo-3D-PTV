@@ -75,8 +75,8 @@ end
 
 if size(centros2,1)>0
     if mostrar==1
-     figure
-     imshow(im, [min(im(:)), max(im(:))])
+%      figure
+%      imshow(im, [min(im(:)), max(im(:))])
      hold on
      scatter(centros2(:,1), centros2(:,2), 'ro ')
      hold on

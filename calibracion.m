@@ -1,4 +1,5 @@
 function []=calibracion(direccion, e, m, l, s, p)
+%100 imagenes en 45 minutos
 % close all
 % clear all
 % 
