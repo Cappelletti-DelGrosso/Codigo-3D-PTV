@@ -1,4 +1,4 @@
-function [ R, T, A, k, J1, J2, M1, M2, sx, sy ] = cargar( direccion )
+function [ R, T, A, k, J1, J2, M1, M2, sx, sy, F ] = cargar( direccion )
 
 dircodigos=cd;
 
@@ -29,7 +29,7 @@ T2=T;
 U02=U0;
 V02=V0;
 Vi2=Vi;
-clearvars -except A2 f2 F2 imagenesbuenas2 imagenesrechazadas2 k2 R2 T2 U02 V02 Vi2  A1 f1 F1 imagenesbuenas1 imagenesrechazadas1 k1 R1 T1 U01 V01 Vi1 dircodigos
+clearvars -except A2 f2 F2 imagenesbuenas2 imagenesrechazadas2 k2 R2 T2 U02 V02 Vi2  A1 f1 F1 imagenesbuenas1 imagenesrechazadas1 k1 R1 T1 U01 V01 Vi1 dircodigos direccion
 
 I1=uint16(imagenesbuenas1);
 I2=uint16(imagenesbuenas2);
@@ -57,9 +57,11 @@ errores1=reshape(F1,  length(F1)/size(Vi1,3), size(Vi1,3));
 errores2=reshape(F2,  length(F2)/size(Vi2,3), size(Vi2,3));
 
 errorescomun = sum([errores1(:,comun(:,1)); errores2(:,comun(:,2))].^2)';
+
 disp('Error acumulado más pequeño:')
 min(errorescomun)
-minimo= and(min(errorescomun)*(1-1E-4)<errorescomun, errorescomun<min(errorescomun)*(1+1E-4));
+% minimo= and(min(errorescomun)*(1-1E-4)<errorescomun, errorescomun<min(errorescomun)*(1+1E-4));
+[~, minimo]=min(errorescomun);
 mejores=comun(minimo,:);
 disp('Mejores imágenes en común: ')
 
@@ -79,6 +81,13 @@ k(2,:)   = k2;
 sx       = [20E-3; 17E-3];
 sy       = [20E-3; 17E-3];
 
-save('Parámetros Montaje Completo', 'R', 'T', 'A', 'k', 'J1', 'J2', 'M1', 'M2', 'sx', 'sy' )
+cd(dircodigos)
+cd ..
+cd('Correspondencia')
+[ F ] = matrizfundamental2( R, T, A, 1, 2 ) ;
+cd ..
+cd(direccion)
+
+save('Parámetros Montaje Completo', 'R', 'T', 'A', 'k', 'J1', 'J2', 'M1', 'M2', 'sx', 'sy', 'F' )
 cd(dircodigos)
 end

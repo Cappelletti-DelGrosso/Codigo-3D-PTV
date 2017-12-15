@@ -33,10 +33,14 @@ for ll=1:2 %Camaras
     for kk=1:size(C,3) %fotogramas
 
           G = A(:,:,ll)*[R(:,:,ll), -R(:,:,ll)*T(ll,:)'];
-        Vi1 = G*[H(:,:,kk); ones(1,size(H,2))];
-        Vi1 = Vi1*diag((1./Vi1(3,:)));
-        [ Vi(:,:,kk,ll), ~ ] = distorsionar2( H(:,:,kk), Vi1, k(ll, :), A(:,:,ll), R(:,:,ll), -R(:,:,ll)*T(ll,:)'  );
-
+%         Vi1 = G*[H(:,:,kk); ones(1,size(H,2))];
+%         Vi1 = Vi1*diag((1./Vi1(3,:)));
+        Vi1(:,:,kk,ll) = G*[H(:,:,kk); ones(1,size(H,2))];
+        Vi1(:,:,kk,ll) = Vi1(:,:,kk,ll)*diag((1./Vi1(3,:,kk,ll)));
+        cd('C:\Users\Nicolás\Desktop\Labo 6\Codigo\Github\Zhang')
+        [ Vi(:,:,kk,ll), ~ ] = distorsionar3( H(:,:,kk), Vi1(:,:,kk,ll), k(ll, :), A(:,:,ll), R(:,:,ll), -R(:,:,ll)*T(ll,:)'  );
+        cd(dircodigos)
+        
         for ii=1:size(Vi,2)
 
                 xi = round(Vi(1,ii, kk, ll));
@@ -61,5 +65,9 @@ end
 for ll=1:2
     escena( Vi(:,:,pasos,ll), A(:,:,ll), sx(ll), sy(ll), R(:,:,ll), (-R(:,:,ll)*T(ll,:)')', Lx, Ly, H(:,:,pasos), im(:,:,ll)); %J(:,:,ll) );
 end
-
+xlabel({'X [mm]'},'FontSize', 16)
+ylabel({'Y [mm]'},'FontSize', 16)
+grid on
+set(gca,'fontsize',16)
+zlabel({'Z [mm]'},'FontSize', 16)
 end

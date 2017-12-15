@@ -1,9 +1,9 @@
-function []=Control(direccion, dirparametros)
+function [errorplano2]=Control(direccion, dirparametros)
 % clear all
 % close all
 % 
 % direccion='C:\Users\Nicolás\Desktop\Labo 6\Mediciones\21-06-17\Control\';
-% dirparametros= 'C:\Users\Nicolás\Desktop\Labo 6\Mediciones\21-06-17\Damero\Parámetros Montaje Completo';
+% dirparametros= 'C:\Users\Nicolás\Desktop\Labo 6\Mediciones\02-11-17\Damero\Parámetros Montaje Completo';
 dircodigos=cd;
 
 
@@ -31,6 +31,7 @@ m=6;
 
 errores=[];
 errorplano=[];
+Npuntos
 for ii=1:Npuntos
     inter=[];
     
@@ -46,22 +47,31 @@ for ii=1:Npuntos
     [f, G] = fit( [inter(1,:)', inter(2,:)'], inter(3,:)', 'poly11' );
     seta = f(X,Y);
     errorplano2 = sum(([X(:)'; Y(:)'; Z(:)']-[X(:)'; Y(:)'; seta(:)']).^2);
-    errorplano= [errorplano; G.sse];
-    sqrt(G.sse)/54
+    errorplano= [errorplano; sqrt(G.sse/54)];
     
     figure
     scatter3(inter(1,:), inter(2,:),inter(3,:), 'ro ')
     hold on
     surf(X,Y,f(X, Y))
     daspect([1,1,1])
-
+    xlabel({'X [mm]'},'FontSize', 16)
+    ylabel({'Y [mm]'},'FontSize', 16)
+    zlabel({'Z [mm]'},'FontSize', 16)
+    set(gca,'fontsize',16)
+    
     errores(:,ii)=(((sum((inter-inter(:,23)).^2)).^0.5)'-((sum((H-H(:,23)).^2)).^0.5)');%./(((sum((H-H(:,1)).^2)).^0.5)');*100
     figure
     hist(errores(:,ii)) %Grafico un histograma de sus errores, este está desplazado por el error del punto 0
-
+    title('Histograma errores respecto del punto 0 en mm')
 end
 figure
 hist(errorplano2)
+
+disp(['Error relativo al plano: ',num2str(mean(errorplano)),'mm'])
+
+disp(['Error relativo entre puntos del plano: ',num2str(std(errores)),'mm'])
+
+title('Histograma errores respecto del plano en mm^2')
 cd ..
 cd('Control')
 end

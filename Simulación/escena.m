@@ -44,11 +44,11 @@ grid on
 box on
 daspect([1 1 1])
 
-hold on 
-scatter3([H(1,:), mundo(1,:), cero(1), uno(1)], [H(2,:),mundo(2,:), cero(2),uno(2)], [H(3,:),mundo(3,:), cero(3), uno(3)],'r')
+hold on %, uno(1)] ,uno(2) , uno(3)
+scatter3([H(1,:), mundo(1,:), cero(1)], [H(2,:),mundo(2,:), cero(2)], [H(3,:),mundo(3,:), cero(3)],'r','LineWidth',2)
 
 for ii=1:size(H,2)
-    line([cero(1), H(1,ii)], [cero(2), H(2,ii)], [cero(3), H(3,ii)])
+    line([cero(1), H(1,ii)], [cero(2), H(2,ii)], [cero(3), H(3,ii)],'Color','blue')%,'LineWidth',2)
 end
 
 % surface(x,y,z) 

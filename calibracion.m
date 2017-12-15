@@ -14,12 +14,13 @@ for camara=1:2
     
     if m==1
 %         pause
-        N=mirar(camara, direccion)
+        N=mirar(camara, direccion, 0)
     end
 
     if l==1
 %         pause
-        leer4(camara, direccion, 1, N, N)
+       
+        leer4(camara, direccion, 1, 86, 86)
     end
 end
 
@@ -34,7 +35,7 @@ end
 if p==1 
 %     pause
     cd('Simulación')
-    [X, N]=pruebaerrores(direccion);
+    [X, N,errorplano]=pruebaerrores(direccion);
     cd ..
 end
 end

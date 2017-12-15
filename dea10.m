@@ -11,7 +11,7 @@ pix = [20E-3; 17E-3]; %tamaño del pixel del sensor
 lado=25.4;
 Npuntos=length(puntos);
 
-for jj=1:10
+for jj=1:9
     jj
     comienzo = 10*(jj-1)+1 ;
     final    = comienzo+9 ;

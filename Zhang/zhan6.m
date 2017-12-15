@@ -1,4 +1,4 @@
-function [ A3, R3, T3, k, R4, T4, F ] = zhan4( H, Vi )
+function [ A3, R3, T3, k, R4, T4, F ] = zhan6( H, Vi )
 
 N= size(Vi,3); %Cantidad de fotos tomadas
  
@@ -137,4 +137,3 @@ if std(F)>5
     disp('Error: las matrices halladas no aproximan bien a los puntos.')
 end
 end
-

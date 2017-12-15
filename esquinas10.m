@@ -42,6 +42,7 @@ cont=0;
 
 for ii=1:Narch%Narch2%Narch1+1:Narch1+2
     ii
+    archivos(ii).name
     im = imread([direccion,'Damero\',archivos(ii).name]);%-Narch1).name]);   
     im = double(im(:,:,1))-fc;
 %     figure

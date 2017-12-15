@@ -1,0 +1,129 @@
+clear all
+close all
+
+load('C:\Users\Nicolás\Desktop\Labo 6\Mediciones\09-11-17\Mediciones\SingleShuting 120 Hz Amplitud 10\CurvaUnida2.mat')
+largo3= cellfun(@(x) size(x,1), curva2);
+[m, id]=sort(largo3);
+
+curva=curva2;
+
+curva3=curva2;
+xlim1 = -170;
+xlim2 = 20;
+ylim1 = 60;
+ylim2 = 140;
+zlim1 = -20;
+zlim2 = 20;
+
+for ii=1:length(curva3)
+    t = curva2{ii}(:,1) ; 
+    x = curva2{ii}(:,2) ; 
+    y = curva2{ii}(:,3) ;
+    z = curva2{ii}(:,4) ;
+    x(or(x>xlim2,x<xlim1)) = nan ;
+    y(or(y>ylim2,y<ylim1)) = nan ;
+    z(or(z>zlim2,z<zlim1)) = nan ;
+    curva4{ii} = [t,x,y,z] ;
+end
+curva2=curva4;
+curva=curva4;
+
+figure(1)
+for ii=1:length(curva)/1
+    clear xtray ytray ztray 
+    xtray = curva{ii*1}(:,2)' ;
+    ytray = curva{ii*1}(:,3)' ;
+    ztray = curva{ii*1}(:,4)' ;
+    hold on
+    plot3(xtray, ytray, ztray,'LineWidth',1,'Color',[1,1,1]*0.7)%,'Color',[134,136,138]*(0.7+ii/length(curva))/256)
+end
+xlabel({'X [mm]'},'FontSize', 16)
+ylabel({'Y [mm]'},'FontSize', 16)
+zlabel({'Z [mm]'},'FontSize', 16)
+axis([xlim1-20, xlim2+20, ylim1-20, ylim2+20, zlim1-20, zlim2+20])
+daspect([1,1,1])
+box on
+camproj perspective
+grid on
+set(gca,'fontsize',16)
+view(-224.4000, 22.8000)
+fh=gcf;
+set(fh, 'renderer', 'painters')
+
+kk=4;plot3(curva2{id(end-kk)}(:,2), curva2{id(end-kk)}(:,3), curva2{id(end-kk)}(:,4),'Color',[255, 102, 0]/255,'LineWidth',2)
+kk=4;plot3(curva2{id(end-kk)}(:,2), curva2{id(end-kk)}(:,3), (zlim1-20)*ones(1,size(curva2{id(end-kk)},1)),'Color',[255, 102, 0]/400,'LineWidth',1)
+kk=4;plot3((xlim1-20)*ones(1,size(curva2{id(end-kk)},1)), curva2{id(end-kk)}(:,3), curva2{id(end-kk)}(:,4),'Color',[0, 114, 187]/300,'LineWidth',1)
+kk=4;plot3(curva2{id(end-kk)}(:,2), (ylim1-20)*ones(1,size(curva2{id(end-kk)},1)), curva2{id(end-kk)}(:,4),'Color',[0, 100, 0]/200,'LineWidth',1)
+
+figure(2)
+for ii=1:length(curva)/1
+    clear xtray ytray ztray 
+    xtray = curva{ii*1}(:,2)' ;
+    ytray = curva{ii*1}(:,3)' ;
+    ztray = curva{ii*1}(:,4)' ;
+    hold on
+    plot3(xtray, ytray, ztray,'LineWidth',1,'Color',[1,1,1]*0.7)%,'Color',[134,136,138]*(0.7+ii/length(curva))/256)
+end
+xlabel({'X [mm]'},'FontSize', 16)
+ylabel({'Y [mm]'},'FontSize', 16)
+zlabel({'Z [mm]'},'FontSize', 16)
+
+axis([xlim1-20, xlim2+20, ylim1-20, ylim2+20, zlim1-20, zlim2+20])
+daspect([1,1,1])
+box on
+grid on
+set(gca,'fontsize',40)
+fh=gcf;
+set(fh, 'renderer', 'painters')
+
+kk=4;plot3(curva2{id(end-kk)}(:,2), curva2{id(end-kk)}(:,3), curva2{id(end-kk)}(:,4),'Color',[255, 102, 0]/255,'LineWidth',2)
+kk=4;plot3(curva2{id(end-kk)}(:,2), curva2{id(end-kk)}(:,3), (zlim1-20)*ones(1,size(curva2{id(end-kk)},1)),'Color',[255, 102, 0]/255,'LineWidth',1)
+view(180, -90)
+
+figure(3)
+for ii=1:length(curva)/1
+    clear xtray ytray ztray 
+    xtray = curva{ii*1}(:,2)' ;
+    ytray = curva{ii*1}(:,3)' ;
+    ztray = curva{ii*1}(:,4)' ;
+    hold on
+    plot3(xtray, ytray, ztray,'LineWidth',1,'Color',[1,1,1]*0.7)%,'Color',[134,136,138]*(0.7+ii/length(curva))/256)
+end
+xlabel({'X [mm]'},'FontSize', 16)
+ylabel({'Y [mm]'},'FontSize', 16)
+zlabel({'Z [mm]'},'FontSize', 16)
+
+axis([xlim1-20, xlim2+20, ylim1-20, ylim2+20, zlim1-20, zlim2+20])
+daspect([1,1,1])
+box on
+grid on
+set(gca,'fontsize',40)
+fh=gcf;
+set(fh, 'renderer', 'painters')
+
+kk=4;plot3(curva2{id(end-kk)}(:,2), curva2{id(end-kk)}(:,3), curva2{id(end-kk)}(:,4),'Color',[255, 102, 0]/255,'LineWidth',2)
+kk=4;plot3((xlim1-20)*ones(1,size(curva2{id(end-kk)},1)), curva2{id(end-kk)}(:,3), curva2{id(end-kk)}(:,4),'Color',[255, 102, 0]/255,'LineWidth',1)
+view(-90, 0)
+
+figure(4); 
+yyaxis left
+kk=4;plot(curva2{id(end-kk)}(:,1), curva2{id(end-kk)}(:,3),'-','Color',[255, 102, 0]/255,'LineWidth',2)
+hold on
+ylabel('Posición [mm]')
+yyaxis right
+kk=4;plot(curva2{id(end-kk)}(:,1), curva2{id(end-kk)}(:,2),'-','Color',[0, 114, 187]/187,'LineWidth',2)
+grid on
+xlabel('t [s]')
+ylabel('Posición [mm]')
+legend('X', 'Y')
+axis([14.3709   20.2456 -131.8210  -43.2407])
+set(gca,'fontsize',16)
+
+figure(5); kk=4;plot(curva2{id(end-kk)}(:,1), curva2{id(end-kk)}(:,4),'-','Color',[0, 100, 0]/150,'LineWidth',2)
+grid on
+xlabel('t [s]')
+ylabel('Posición [mm]')
+legend('Z')
+axis([14.4332   20.2028  -10.0000    6.9444])
+set(gca,'fontsize',16)
+

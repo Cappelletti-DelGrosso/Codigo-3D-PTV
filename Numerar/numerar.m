@@ -11,13 +11,13 @@ N=length(Vi);
 %end
 
 
-[~,I]=sort(Vi(:,1));
-D=sort([I(1), I(end)]);
-[~,J]=sort(Vi(:,2));
-p(:,1)=Vi(I(1),:);
-p(:,2)=Vi(I(end),:);
-p(:,3)=Vi(J(1),:);
-p(:,4)=Vi(J(end),:);
+[~,I]=sort(Vi(:,1)) ;
+D=sort([I(1), I(end)]) ;
+[~,J]=sort(Vi(:,2)) ;
+p(:,1)=Vi(I(1),:) ;
+p(:,2)=Vi(I(end),:) ;
+p(:,3)=Vi(J(1),:) ;
+p(:,4)=Vi(J(end),:) ;
 
 if graf==1
         pause

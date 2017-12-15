@@ -57,7 +57,7 @@ for jj=1:agregarN
     end
 
     if jj>1
-        if abs(focal(1)-focal(2))>3 || abs(focal(1)-f(L-1,1))>3 || A3(1,3)<200 || A3(2,3)<200 || std(F3)>5 || A3(1,3)>1000 || A3(2,3)>1000 || abs(A3(1,3)-U0(L-1))>100 || abs(A3(2,3)-V0(L-1))>100
+        if abs(focal(1)-focal(2))>3 || abs(focal(1)-f(L-1,1))>3 || A3(1,3)<200 || A3(2,3)<200 || std(F3)>5 || A3(1,3)>1200 || A3(2,3)>1000 || abs(A3(1,3)-U0(L-1))>100 || abs(A3(2,3)-V0(L-1))>100
            
                 abs(focal(1)-focal(2))
                 abs(focal(1)-f(L-1,1))

@@ -26,4 +26,3 @@ X=reshape(x, 3, 3);
 P = inv(T)*X'*U; %Recuperamos la homografía de los puntos sin normalizar
 
 end
-
