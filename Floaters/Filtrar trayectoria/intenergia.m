@@ -10,12 +10,12 @@ cd ..
 cd('Presentacion\Informe Avance')
 
 PDFdEdt(dEdt)
-
+largo3= cellfun(@(x) size(x,1), curva2);
 skewness(dEdt)
 [m, id]=max(largo3);
 figure; plot(curvas4{id}.ta, curvas4{id}.dEdt,'o-','Color',[0, 114, 187]/187)
 xlabel({'t [s]'},'FontSize', 16)
-ylabel({'dE/dT [\mu W]'},'FontSize', 16)
+ylabel({'dE/dt [\mu W]'},'FontSize', 16)
 grid on
 set(gca,'fontsize',16)
 

@@ -23,6 +23,8 @@ for kk=1:size(particulas,1)
             im1(:,:,camara) = double(im)- fc(:,:,camara);
             clear im
         end
+    else
+        im1=0;
     end
     
 [candidatos1, candidatos2,~,~]=nuevacorrespondencia2(particulas{kk,1}', particulas{kk,2}', im1, F, graf2);
@@ -57,5 +59,10 @@ axis([-400 400 -250 250 -200 200])
 daspect([1 1 1])
 cd ..
 cd('Superficie Libre')
+
+dircodigo=cd;
+cd(direccion)
+save('Rycentro', 'R', 'centro')
+cd(dircodigo)
 end
 

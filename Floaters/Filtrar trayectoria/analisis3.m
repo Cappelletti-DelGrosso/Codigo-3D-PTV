@@ -1,5 +1,4 @@
-%Análisis de trayectorias
-function [curvas]=analisis2(curva, f)
+function [curvas]=analisis3(curva, f)
 N=length(curva);
 curvas={};
 
@@ -49,7 +48,7 @@ for kk=1:N
       if f==1
       %W = round(size(trayectoria.xyz,1)*3/100)+mod(round(size(trayectoria.xyz,1)*3/100),2);
       W=18;
-      [tXYZf, UVWf, ABCf]=FiltrarTrayectoria2([trayectoria.t,trayectoria.xyz], W);
+      [tXYZf, UVWf, ABCf]=FiltrarTrayectoria3([trayectoria.t,trayectoria.xyz], W);
       trayectoria.tf = tXYZf(:,1);
       trayectoria.xyzf = tXYZf(:,2:4);
       trayectoria.vf = UVWf;

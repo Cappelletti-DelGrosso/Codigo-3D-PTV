@@ -5,7 +5,7 @@ close all
 modo='onesided';
 N  = 1    ;
 Fs = 120   ;
-L  = 500   ; 
+L  = 100   ; 
 T  = L/Fs ;
 v  = [ -34.3805,    3.0771,   -1.4175] ;
 %error = [0.4522,    0.5223,    0.8180] ;
@@ -186,4 +186,24 @@ xlabel({'Frecuencia [Hz]'},'FontSize', 16)
 ylabel({'EX [J]'},'FontSize', 16)
 set(gca,'fontsize',16)
 legend('Original','Con Error','Filtrada')
+
+figure
+ceros=zeros(size(v(:,1)));
+ceros(1:size(UVWf,1))=UVWf(:,1);
+[energiav, f1]=pwelch(0.5*(v(:,1)/1000),[],[],[],Fs,modo);
+[energiav2, f2]=pwelch(0.5*(v2(:,1)/1000),[],[],[],Fs,modo);
+[energiaf, f3]=pwelch(0.5*(ceros/1000),[],[],[],Fs,modo);
+
+loglog(f1,energiav ,'--','Color',[255, 102, 0]/255,'LineWidth',2)
+hold on; loglog(f2, energiav2,'Color',[0, 100, 0]/150)
+loglog(f3, energiaf,'.-','Color',[0, 114, 187]/187,'LineWidth',1.5)
+% xlim([0,Fs/2])
+grid on
+box on
+title('Espectro Energia')
+xlabel({'Frecuencia [Hz]'},'FontSize', 16)
+ylabel({'EX [J]'},'FontSize', 16)
+set(gca,'fontsize',16)
+legend('Original','Con Error','Filtrada')
+
 
